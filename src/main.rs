@@ -182,7 +182,7 @@ fn patch_first_mail(patch_files: &Vec<PathBuf>, lab_task: LabTask) -> anyhow::Re
     let mut output = File::create(first_patch)?;
     //a real parser is too much. just inerate over lines
     for line in patch.lines() {
-        if line.starts_with("Subject: [PATCH ") {
+        if line.starts_with("Subject: [PATCH") {
             let (line_part1, line_part2) = line.split_once("]").unwrap();
             writeln!(output, "{line_part1}] {lab_task} {line_part2}")
         } else {
